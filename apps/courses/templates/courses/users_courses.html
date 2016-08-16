@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Users and Courses Combined</title>
+  {% load staticfiles %}
+<link rel="stylesheet" href="{% static 'courses/css/style.css' %}"media="screen" title="no title"  charset="utf-8">
+<script src="{% static 'courses/js/main.js' %}" > </script>
+</head>
+<body>
+{{users}}
+{{courses}}
+  <form action='/process' method='post'>
+    {% csrf_token %}
+    <select name='users'>
+      <!-- <option value="" selected="selected">Users</option> -->
+      {% for course in courses %}
+        <option value="{{course.id}}">{{course.name}}</option>
+      {% endfor %}
+    </select>
+    <select name='courses'>
+      <!-- <option value="" selected="selected">Courses</option> -->
+      {% for course in courses %}
+        <option value="{{course.id}}">{{course.name}}</option>
+      {% endfor %}
+    </select>
+    <input type='submit' value='Add User to Course'>
+  </form>
+
+  <table>
+    <tr>
+      <th>Course</th>
+      <th>Title</th>
+      <th>Number of Users</th>
+    </tr>
+  {% for course in courses %}
+    <tr>
+      <td>{{course.id}}</td>
+      <td>{{course.name}}</td>
+      <td>{{course.users_count}}</td>
+    </tr>
+  {% endfor %}
+  </table>
+<a href="{% url 'courses_index' %}">Return Home</a>
+</body>
+</html>

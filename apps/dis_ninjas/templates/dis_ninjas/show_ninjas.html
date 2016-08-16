@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Index Page</title>
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'dis_ninjas/css/style.css' %}">
+  <script src="{% static 'dis_ninjas/js/main.js' %}" > </script>
+</head>
+<body>
+  {% if color == 'red' or not color%}
+    <img src="{% static 'dis_ninjas/img/raphael.jpg' %}" alt="raph">
+    {% endif %}
+  {% if color == 'orange' or not color%}
+    <img src="{% static 'dis_ninjas/img/michelangelo.jpg' %}" alt="mikey">
+    {% endif %}
+  {% if color == 'purple' or not color%}
+    <img src="{% static 'dis_ninjas/img/donatello.jpg' %}" alt="donny">
+    {% endif %}
+  {% if color == 'blue' or not color%}
+    <img src="{% static 'dis_ninjas/img/leonardo.jpg' %}" alt="leo">
+    {% endif %}
+  {% if color and color not in 'red orange purple blue' %}
+    <img src="{% static 'dis_ninjas/img/mf_april.jpg' %}" alt="april">
+  {% endif %}
+</body>
+</html>

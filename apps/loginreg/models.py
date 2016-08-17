@@ -42,5 +42,5 @@ class User(models.Model):
     password = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    course = models.ForeignKey(Course, null=True)
+    # course = models.ForeignKey(Course, null=True)
     objects = UserManager()

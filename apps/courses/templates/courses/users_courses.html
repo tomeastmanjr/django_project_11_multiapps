@@ -10,25 +10,22 @@
 <script src="{% static 'courses/js/main.js' %}" > </script>
 </head>
 <body>
-{{users}}
-{{courses}}
-  <form action='/process' method='post'>
+  <form action='{% url "add_user" %}' method='post'>
     {% csrf_token %}
-    <select name='users'>
-      <!-- <option value="" selected="selected">Users</option> -->
-      {% for course in courses %}
-        <option value="{{course.id}}">{{course.name}}</option>
+    <select name='userid'>
+      <option value="" selected="selected">Users</option>
+      {% for user in users %}
+        <option value="{{user.id}}">{{user.first_name}} {{user.last_name}}</option>
       {% endfor %}
     </select>
-    <select name='courses'>
-      <!-- <option value="" selected="selected">Courses</option> -->
+    <select name='courseid'>
+      <option value="" selected="selected">Courses</option>
       {% for course in courses %}
         <option value="{{course.id}}">{{course.name}}</option>
       {% endfor %}
     </select>
     <input type='submit' value='Add User to Course'>
   </form>
-
   <table>
     <tr>
       <th>Course</th>
@@ -39,7 +36,7 @@
     <tr>
       <td>{{course.id}}</td>
       <td>{{course.name}}</td>
-      <td>{{course.users_count}}</td>
+      <td>{{course.user_count}}</td>
     </tr>
   {% endfor %}
   </table>
